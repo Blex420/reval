@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="de">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Entwicklung eines Microsoft Teams Chatbots</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/seitwerk.css">
+	<link rel="stylesheet" href="stylesheet.css">
+	<link rel="stylesheet" href="plugin/highlight/zenburn.css">
+	<style>
+		.agenda {
+			position: absolute;
+			bottom: -5px;
+			left: -100px;
+			color: grey;
+			font-size: 18px;
+		}
+
+		.agenda span.current {
+			color: #AEC900;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body class="reveal no-cursor">
+<div class="slides">
+	<section data-background="images/test4.svg">
+		<h3>Entwicklung eines Microsoft Teams Chatbots</h3>
+		<p>zur Optimierung des internen Informationsaustauschs</p>
+
+		<aside class="notes">
+			<ul>
+				<li>Herzlich Willkommen</li>
+				<li>Vorstellung Person
+					<ul>
+						<li>Name: Atréus Engelniederhammer</li>
+						<li>Wohnsitz: Murnau</li>
+						<li>Fachrichtung: Anwendungsentwicklung</li>
+					</ul>
+				</li>
+				<li>Präsentation über Abschlussprojekt - an den Prüfungsausschuss gerichtet</li>
+				<li>Thema: Entwicklung einer Middleware und eines Microsoft Teams Bots zur Optimierung des internen Informationsaustauschs</li>
+			</ul>
+		</aside>
+	</section>
+	<section>
+		<div class="agenda">
+			<span class="current">Projektumfeld</span> |
+			<span>Analysephase</span> |
+			<span>Planung/Entwurf</span> |
+			<span>Implementierung</span> |
+			<span>Testing und Deployment</span> |
+			<span>Fazit</span>
+		</div>
+		<section>
+			<h2>Agenda</h2>
+			<ul>
+				<li class="fragment highlight-sw">Projektumfeld</li>
+				<li>Analysephase</li>
+				<li>Planung/Entwurf</li>
+				<li>Implementierung</li>
+				<li>Testing und Deployment</li>
+				<li>Fazit</li>
+			</ul>
+			<aside class="notes">
+				<ul>
+					<li>Erklärung der einzelnen Punkte auf der Agenda</li>
+					<li>Überleitung zum nächsten Punkt: Projektumfeld</li>
+				</ul>
+			</aside>
+		</section>
+		<section>
+			<h3>Projektumfeld</h3>
+			<div class="fragment">
+				<img src="images/sw-haus.jpg" width="80%" style="max-height: 60%;">
+				<img style="margin-top: 20px; margin-bottom: 20px;" width="300" src="images/Seitwerk_wortbildmarke_weiß%20(2).svg" alt="">
+			</div>
+
+			<aside class="notes">
+				<ul>
+					<li>Mein Ausbildungsbetrieb: Seitwerk GmbH</li>
+					<li>Gegründet 2004</li>
+					<li>Aktuell 80 Mitarbeiter</li>
+					<li>Beschäftigt rund 80 Mitarbeiter</li>
+					<li>in 3 Abteilungen</li>
+				</ul>
+			</aside>
+		</section>
+	</section>
+
+	<section>
+		<div class="agenda">
+			<span>Projektumfeld</span> |
+			<span class="current">Analysephase</span> |
+			<span>Planung/Entwurf</span> |
+			<span>Implementierung</span> |
+			<span>Testing und Deployment</span> |
+			<span>Fazit</span>
+		</div>
+		<section>
+			<h2>Agenda</h2>
+			<ul>
+				<li class="highlight-disabled">Projektumfeld</li>
+				<li class="fragment highlight-sw">Analysephase</li>
+				<li>Planung/Entwurf</li>
+				<li>Implementierung</li>
+				<li>Testing und Deployment</li>
+				<li>Fazit</li>
+			</ul>
+			<aside class="notes">
+				<ul>
+					<li>Überleitung zur Analysephase</li>
+					<li>Erklärung der Ist- und Soll-Zustände</li>
+				</ul>
+			</aside>
+		</section>
+		<section>
+			<h3>Ist-Zustand</h3>
+			<ul>
+				<li class="fragment" style="width: 105%;">Verwendung des lokal gehosteten Intranets</li>
+				<li class="fragment">Veraltete Oberfläche</li>
+				<li class="fragment">Nur von innerhalb des Netzwerks erreichbar</li>
+			</ul>
+			<aside class="notes">
+				<ul>
+					<li>Hauptinformationsquelle lokal gehostetes Intranet</li>
+					<li>CMS bekommt keine Updates</li>
+					<li>KLICK</li>
+					<li>Oberfläche nicht effizient und intuitiv</li>
+					<li>KLICK</li>
+					<li>Informationen nur innerhalb des Netzwerks erreichbar</li>
+				</ul>
+			</aside>
+		</section>
+		<section>
+			<h3>Soll-Zustand</h3>
+			<ul>
+				<li class="fragment" style="width: 105%;">Wichtige Informationen identifizieren</li>
+				<li class="fragment">Intuitive und effizientere Bereitstellung</li>
+				<li class="fragment">Sichere Bereitstellung von Informationen auch von außen</li>
+			</ul>
+			<aside class="notes">
+				<ul>
+					<li>Informationen auf die häufig zugegriffen werden, identifizieren</li>
+					<li>KLICK</li>
+					<li>Diese dann effizienter und intuitiver bereitstellen, um Zeit zu sparen</li>
+					<li>KLICK</li>
+					<li>Informationen auch von außerhalb sicher bereitstellen</li>
+				</ul>
+			</aside>
+		</section>
+	</section>
+
+	<section>
+		<div class="agenda">
+			<span>Projektumfeld</span> |
+			<span>Analysephase</span> |
+			<span class="current">Planung/Entwurf</span> |
+			<span>Implementierung</span> |
+			<span>Testing und Deployment</span> |
+			<span>Fazit</span>
+		</div>
+		<section>
+			<h2>Agenda</h2>
+			<ul>
+				<li class="highlight-disabled">Projektumfeld</li>
+				<li class="highlight-disabled">Analysephase</li>
+				<li class="fragment highlight-sw">Planung/Entwurf</li>
+				<li>Implementierung</li>
+				<li>Testing und Deployment</li>
+				<li>Fazit</li>
+			</ul>
+			<aside class="notes">
+				<ul>
+					<li>Überleitung zur Planungs- und Entwurfsphase</li>
+				</ul>
+			</aside>
+		</section>
+		<section>
+			<h3>Projektplanung</h3>
+			<ul>
+				<li class="fragment">Benötigte Informationsarten identifiziert</li>
+				<li class="fragment">Teams als Benutzeroberfläche</li>
+				<li class="fragment">Grobe Aufgabenpakete erstellt</li>
+			</ul>
+			<aside class="notes">
+				<ul>
+					<li>Gestartet mit Projektleitern und Mitarbeitern besprochen</li>
+					<li>Identifikation der relevanten Informationsarten</li>
+					<li>3 verschiedene Informationsgruppen (ein Projekt, Kunde, eigene Teilnahme an Projekten)</li>
+					<li>KLICK</li>
+					<li>Entscheidung für Teams als Benutzeroberfläche</li>
+					<li>KLICK</li>
+					<li>Erstellung grober Aufgabenpakete</li>
+				</ul>
+			</aside>
+		</section>
+		<section>
+			<h3>Architekturplanung</h3>
+			<ul>
+				<li>Aufbau des Seitwerk Netzwerks</li>
+				<div class="fragment">
+					<li>Sicherheitskritische Stellen identifiziert</li>
+					<img src="images/Sicherheit.png" alt="Architektur Entwurf">
+				</div>
+				<li class="fragment">Middleware als Schutzmechanismus</li>
+			</ul>
+			<aside class="notes">
+				<ul>
+					<li>Aufbau analysiert, welche Schnittstellen ich anspreche</li>
+					<li>KLICK</li>
+					<li>Dabei die sicherheitskritischen Stellen identifiziert</li>
+					<li>Sicherheitsstandards gewährleisten zu können Middleware als Schutzmechanismus</li>
+					<li>Sicher wegen Firewall-Regeln nur fester IP-Bereich Azure</li>
+				</ul>
+			</aside>
+		</section>
+		<section>
+			<h3>Technologien</h3>
+			<ul>
+				<li>Node.js</li>
+				<li>Express.js</li>
+				<li>Microsoft Bot Framework</li>
+				<li>Teams Toolkit</li>
+			</ul>
+			<aside class="notes">
+				<ul>
+					<li>Alles in JavaScript, weil meiste Erfahrung</li>
+					<li>Node.js JavaScript Laufzeitumgebung, um JavaScript auch außerhalb eines Webbrowsers</li>
+					<li>Express.js schlanke Erweiterung für Node.js für Middleware um HTTP-Server der auf HTTP-Anfragen reagiert</li>
+					<li>Microsoft Bot Framework von Microsoft bringt alle Funktionen für Teams Bot</li>
+					<li>Teams Toolkit keine JavaScript Framework, sondern Plugin für Visual Studio Code</li>
+					<li>Erheblich vereinfacht bei Entwicklung, Testing und Deployment</li>
+				</ul>
+			</aside>
+		</section>
+	</section>
+
+	<section>
+		<div class="agenda">
+			<span>Projektumfeld</span> |
+			<span>Analysephase</span> |
+			<span>Planung/Entwurf</span> |
+			<span class="current">Implementierung</span> |
+			<span>Testing und Deployment</span> |
+			<span>Fazit</span>
+		</div>
+		<section>
+			<h2>Agenda</h2>
+			<ul>
+				<li class="highlight-disabled">Projektumfeld</li>
+				<li class="highlight-disabled">Analysephase</li>
+				<li class="highlight-disabled">Planung/Entwurf</li>
+				<li class="fragment highlight-sw">Implementierung</li>
+				<li>Testing und Deployment</li>
+				<li>Fazit</li>
+			</ul>
+			<aside class="notes">
+				<ul>
+					<li>Überleitung zur Implementierungsphase</li>
+				</ul>
+			</aside>
+		</section>
+		<section>
+			<h3>Teams-Bot</h3>
+			<ul>
+				<li>Entwicklung mit Teams Toolkit</li>
+				<li class="fragment">Command-Handler</li>
+			</ul>
+			<img class="fragment" src="images/Auswahl.png" alt="Auswahl Bot" width="60%">
+			<aside class="notes">
+				<ul>
+					<li>Teams Toolkit Grundstruktur erzeugt damit schnell Funktionsweise verstanden</li>
+					<li>Entwicklungsarbeit für Command-Handler</li>
+					<li>Command-Handler ähnlich wie Routen bei einem HTTP-Server</li>
+					<li>Trigger Patterns statt HTTP-Anfragen</li>
+				</ul>
+			</aside>
+		</section>
+		<section>
+			<ul>
+				<li >Fetch Methode für die Anfrage an die Middleware</li>
+			</ul>
+			<pre class="fragment"><code>
+				const apiUrl = `http://firewall.seitwerk.net:3000/whoami?login=${encodeURIComponent(userEmail)}&timeperiod=${timePeriod}`;
+
+				try {
+				const response = await fetch(apiUrl, {
+				method: 'GET',
+				headers: {
+				'Content-Type': 'application/json',
+				}
+				});
+</code></pre>
+			<aside class="notes">
+				<ul>
+					<li>Erklärung der URL-Konstruktion für die Middleware</li>
+					<li>Wie die Anfragen an die Middleware gesendet werden</li>
+				</ul>
+			</aside>
+		</section>
+		<section>
+			<img src="images/architekturwowirgeradesind.png" alt="Botresponse" width="full">
+			<aside class="notes">
+				<ul>
+					<li>Wo wir uns gerade befinden im System BILD ZEIGEN</li>
+					<li>Middleware damit umgeht, kommen wir jetzt dazu</li>
+				</ul>
+			</aside>
+		</section>
+		<section>
+			<h3>Middleware</h3>
+			<ul>
+				<li>Express.js</li>
+				<li>Routen für die Datenabfrage</li>
+
+			</ul>
+			<pre class="fragment" ><code >
+async function whoami(req, res) {
+    const userLogin = req.query.login;
+    const timePeriod = req.query.timeperiod || 'week';
+
+    try {
+        const token = await TokenManager.getToken();
+        const apiUrl = `https://intranet.lan.seitwerk.net/de/api/whoami/login/${encodeURIComponent(userLogin)}.html?timeperiod=${encodeURIComponent(timePeriod)}`;
+
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+  </code></pre>
+			<aside class="notes">
+				<ul>
+					<li>Erklärung der Middleware-Entwicklung</li>
+					<li>Entwicklungsarbeit 3 passende Routen für die jeweils passenden Command-Handler</li>
+					<li>Routen ähnlich zu Command-Handler URL für API-Anfrage an Intranet</li>
+					<li>API im Intranet war schon vorhanden Daten im JSON-Format zurück</li>
+				</ul>
+			</aside>
+		</section>
+		<section>
+			<ul>
+				<div>
+					<li>Antworten im JSON-Format</li>
+				</div>
+				<pre><code >
+				{
+					"name": "Atréus Engelniederhammer",
+					"projects": {
+						"loggedHours": [
+							{
+							"project_name": "Weiterbildung, lernen, einarbeiten",
+							"total hours": "7.5",
+							"project_id": "130"
+							},
+							{
+							"project _name": "IFB.de",
+							"total hours": "7.5",
+							"project_id": "183"
+							},
+							{
+							"project _name": "Service & Technik",
+							"total hours": "0.5",
+							"project_id": "126"
+							}
+						]
+					},
+					"infos": {
+						"birthday": "2004-07-20",
+						"telefon": "149"
+					}
+				}
+					  </code></pre>
+<!--				<img class="fragment" src="images/Json.png" alt="Architektur Entwurf">-->
+			</ul>
+		</section>
+		<aside class="notes">
+			<li>JSON-Format</li>
+		</aside>
+		<section>
+			<ul>
+				<li class="fragment">Formatierung der Daten für die Ausgabe</li>
+			</ul>
+			<img class="fragment" src="images/Botresponse.png" alt="Botresponse" width="60%">
+			<aside class="notes">
+				<ul>
+					<li>Daten anschaulich formatiert für Anzeige im Teams Chat</li>
+				</ul>
+			</aside>
+		</section>
+		<section>
+			<ul>
+				<li>Einsatz des Bots</li>
+			</ul>
+			<video
+					data-autoplay
+					src="images/Atreus-Video.mp4"
+			></video>
+			<aside class="notes">
+				<ul>
+					<li>Daten anschaulich formatiert für Anzeige im Teams Chat</li>
+				</ul>
+			</aside>
+		</section>
+	</section>
+
+	<section>
+		<div class="agenda">
+			<span>Projektumfeld</span> |
+			<span>Analysephase</span> |
+			<span>Planung/Entwurf</span> |
+			<span>Implementierung</span> |
+			<span class="current">Testing und Deployment</span> |
+			<span>Fazit</span>
+		</div>
+		<section>
+			<h2>Agenda</h2>
+			<ul>
+				<li class="highlight-disabled">Projektumfeld</li>
+				<li class="highlight-disabled">Analysephase</li>
+				<li class="highlight-disabled">Planung/Entwurf</li>
+				<li class="highlight-disabled">Implementierung</li>
+				<li class="fragment highlight-sw">Testing und Deployment</li>
+				<li>Fazit</li>
+			</ul>
+			<aside class="notes">
+				<ul>
+					<li>Überleitung zur Test- und Deploymentphase</li>
+				</ul>
+			</aside>
+		</section>
+		<section>
+			<h3>Teams-Bot Test</h3>
+			<ul>
+				<li>Hilfe durch Teams Toolkit</li>
+				<img class="fragment" src="images/teamstool.png" alt="teamstool" width="60%">
+			</ul>
+			<aside class="notes">
+				<ul>
+					<li>Mit Hilfe Teams Toolkit</li>
+					<li>Lokale und Produktionsumgebung</li>
+					<li>Auf Reaktion der Command-Handler getestet</li>
+				</ul>
+			</aside>
+		</section>
+		<section>
+			<h3>Testing der Middleware</h3>
+			<ul>
+				<li >Curl-Anfragen im Terminal</li>
+				<li class="fragment">System-Kommunikation nach Deployment</li>
+			</ul>
+			<aside class="notes">
+				<ul>
+					<li>Anfragen des Bots imitiert</li>
+					<li>Überprüfung der System-Kommunikation, Integrationstests nach Deployment</li>
+				</ul>
+			</aside>
+		</section>
+		<section>
+			<h3>Deployment der Middleware</h3>
+			<ul>
+				<li>Deployment auf Ubuntu-Server</li>
+				<li class="fragment">Git-Clone-Verfahren</li>
+				<li class="fragment">Updates und Fehlerbehebungen per SSH</li>
+			</ul>
+			<aside class="notes">
+				<ul>
+					<li>Schon vorhandener Ubuntu-Server innerhalb der DMZ</li>
+					<li>Per SSH auf Server angemeldet</li>
+					<li>Git-Clone-Verfahren</li>
+					<li>Um agil auf Fehler und Erweiterungen reagieren zu können</li>
+				</ul>
+			</aside>
+		</section>
+		<section>
+			<h3>Deployment des Teams-Bots</h3>
+			<ul>
+				<li>Vorkehrungen im Azure Admin Center</li>
+				<li>Teams Toolkit für Deployment</li>
+			</ul>
+			<aside class="notes">
+				<ul>
+					<li>Mit Hilfe Teams Toolkit</li>
+					<li>Vorkehrungen im Azure Admin Center wurden für mich eingestellt</li>
+				</ul>
+			</aside>
+		</section>
+	</section>
+
+	<section>
+		<div class="agenda">
+			<span>Projektumfeld</span> |
+			<span>Analysephase</span> |
+			<span>Planung/Entwurf</span> |
+			<span>Implementierung</span> |
+			<span>Testing und Deployment</span> |
+			<span class="current">Fazit</span>
+		</div>
+		<section>
+			<h2>Agenda</h2>
+			<ul>
+				<li class="highlight-disabled">Projektumfeld</li>
+				<li class="highlight-disabled">Analysephase</li>
+				<li class="highlight-disabled">Planung/Entwurf</li>
+				<li class="highlight-disabled">Implementierung</li>
+				<li class="highlight-disabled">Testing und Deployment</li>
+				<li class="fragment highlight-sw">Fazit</li>
+			</ul>
+			<aside class="notes">
+				<ul>
+					<li>Überleitung zum Fazit</li>
+				</ul>
+			</aside>
+		</section>
+	</section>
+	<section>
+		<h3>Fazit</h3>
+		<ul>
+			<li>Soll-/Ist-Vergleich</li>
+			<li>Lessons Learned</li>
+			<li>Ausblick</li>
+		</ul>
+		<aside class="notes">
+			<ul>
+				<li>Das Projekt war erfolgreich</li>
+				<li>Informationen gesammelt und diese effizienter bereitgestellt</li>
+				<li>Bot wird verwendet und spart Mitarbeitern Zeit</li>
+				<li>Was ich gelernt habe dabei</li>
+				<li>Viel Vorbereitungszeit mit Azure-Produkten</li>
+				<li>Ausblick: Inventarverwaltung über den Bot</li>
+			</ul>
+		</aside>
+	</section>
+	</section>
+	<section data-background="images/background-end.jpg">
+		<h3>Vielen Dank für Ihre Aufmerksamkeit</h3>
+	</section>
+</div>
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+	Reveal.initialize({
+		hash: true,
+		history: true,
+		controls: false,
+		pdfMaxPagesPerSlide: 1,
+		controlsLayout: 'bottom-right',
+		slideNumber: false,
+
+		plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+	});
+</script>
+</body>
+</html>

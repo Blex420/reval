@@ -1,0 +1,34 @@
+:root {
+    --sw-color: #222222;
+}
+
+.reveal .slides section .fragment {
+    visibility: visible !important;
+}
+
+.reveal .slides section .fragment.highlight-sw {
+    opacity: 1;
+    visibility: inherit;
+}
+
+.reveal .slides section .fragment.highlight-sw.visible {
+    color: var(--sw-color);
+}
+
+.fragment.highlight-sw.disabled {
+    background-color: pink;
+}
+
+.highlight-disabled {
+    color: #AEC900;
+}
+
+.reveal .slide-number {
+    right: 0;
+    bottom: 0;
+}
+
+.reveal .controls {
+    bottom: 20px;
+    right: 20px;
+}
